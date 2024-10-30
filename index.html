@@ -5,236 +5,189 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comprobante de Pago Mensualidad</title>
     <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-    }
-
-    .invoice-container {
-        width: 8.5in; /* Ancho de una hoja tamaño carta */
-        height: 11in; /* Alto de una hoja tamaño carta */
-        margin: 0 auto;
-        background-color: #fff;
-        padding: 1in; /* Márgenes de 1 pulgada */
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        box-sizing: border-box; /* Asegura que padding y borde estén incluidos en el tamaño total */
-    }
-
-    @media print {
         body {
-            background-color: #fff;
+            font-family: Arial, sans-serif;
             margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            min-height: 100vh;
         }
 
         .invoice-container {
-            width: 100%; /* Asegura que ocupe todo el ancho de la página en impresión */
-            height: auto; /* Deja que el contenido determine la altura */
-            box-shadow: none; /* Elimina la sombra durante la impresión */
-            padding: 0; /* Elimina el padding extra al imprimir */
-            margin: 0; /* Elimina márgenes al imprimir */
+            width: 8.5in;
+            height: 11in;
+            background-color: #fff;
+            padding: 1in;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        @media print {
+            body {
+                background-color: #fff;
+                margin: 0;
+            }
+            .invoice-container {
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+            }
+            .btn-compartir {
+                display: none;
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 5px 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .details-section {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .details {
+            flex-basis: 45%;
+        }
+
+        .details strong {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .invoice-items table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .invoice-items th, .invoice-items td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .invoice-items th {
+            background-color: #FFC300;
+            color: #fff;
+        }
+
+        .totals {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .highlight {
+            color: #4CAF50;
+            font-size: 16px;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #ddd;
+            margin: 20px 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
         }
 
         .btn-compartir {
-            display: none; /* Oculta el botón de compartir al imprimir */
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
         }
-    }
 
-    .header {
-        text-align: center;
-        margin-bottom: 40px;
-    }
-
-    .header h1 {
-        margin: 10px 0;
-        font-size: 24px;
-        color: #333;
-    }
-
-    .details-section {
-        margin-bottom: 40px;
-    }
-
-    .details {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-
-    .details strong {
-        font-weight: bold;
-        color: #555;
-    }
-
-    .invoice-items table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .invoice-items th, .invoice-items td {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-        text-align: left;
-    }
-
-    .invoice-items th {
-        background-color: #f0f0f0;
-        color: #333;
-    }
-
-    .totals {
-        margin-top: 20px;
-        text-align: right;;
-         
-    }
-
-    .totals div {
-        margin-bottom: 10px;
-    }
-
-    .totals strong {
-        font-size: 18px;
-    }
-
-    .footer {
-        text-align: center;
-        margin-top: 50px;
-        color: #777;
-    }
-
-    .highlight {
-        color: #4CAF50;
-        font-size: 16px;
-    }
-
-    .divider {
-        height: 1px;
-        background-color: #ddd;
-        margin: 20px 0;
-    }
-
-    /* Posiciona el botón de compartir en la parte superior izquierda */
-    .btn-compartir {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 1000;
-    }
-
-    .btn-compartir img {
-        width: 50px;  /* Ajusta el tamaño del botón si es necesario */
-        height: auto;
-        cursor: pointer;
-    }
-
-    .logo-svg {
-        width: 200px;
-        height: 200px;
-        margin: 20px auto;
-        display: block;
-    }
-
-     .invoice-items th {
-        background-color: #00a2e8; /* Color azul */
-        color: #fff; /* Color de texto blanco para contraste */
-    }   
-</style>
+        .btn-compartir img {
+            width: 50px;
+            height: auto;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-
     <div class="invoice-container">
-        <!-- SVG Logo -->
         <svg height="250" width="250" xmlns="http://www.w3.org/2000/svg">
-  <!-- Círculo naranja -->
-  <circle r="60" cx="110" cy="102" fill="orange" />
-  
-  <!-- Círculo blanco -->
-  <circle r="57.5" cx="105" cy="100" fill="white" />
-  
-  <!-- Círculo negro -->
-  <circle r="50" cx="105" cy="100" fill="black" />
-
-  <!-- Definir el camino para el texto "CLUB RENACER" -->
-  <defs>
-    <path id="circlePath" d="M 105,100 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
-  </defs>
-  
-  <!-- Texto "CLUB RENACER" -->
-  <text font-size="7.5" fill="white" font-family="Arial" font-weight="bold">
-    <textPath href="#circlePath" startOffset="25%" text-anchor="middle">
-      CLUB RENACER
-    </textPath>
-  </text>
-
-  <!-- Definir el camino para el texto "ANSERMA-CALDAS" -->
-  <defs>
-    <path id="circlePath1" d="M 105,95 m 40,0 a 40,40 0 1,0 -80,0 a 40,40 0 1,0 80,0" />
-  </defs>
-  
-  <!-- Texto "ANSERMA-CALDAS" -->
-  <text font-size="5" fill="white" font-family="Comic Sans MS" font-weight="bold">
-    <textPath href="#circlePath1" startOffset="75%" text-anchor="middle">
-      ANSERMA-CALDAS
-    </textPath>
-  </text> 
-
-  <!-- Texto "2008" debajo de "ANSERMA-CALDAS" -->
-  <text font-size="5" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle" x="105" y="144">2008</text>
-  
-  <!-- Texto "C", "A" y "R" en el centro -->
-  <text x="66" y="110" fill="#52f845" stroke="#52f845" font-size="42.5">C</text> 
-  <text x="113" y="110" fill="#FFFF00" stroke="#FFFF00" font-size="49">A</text>
-  <text x="90" y="110" fill="orange" stroke="orange" font-size="55">R</text>
-
-  <!-- Texto "PATINAJE DE CARRERAS" debajo de "CAR" -->
-  <text x="105" y="120" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle" font-size="6.5">PATINAJE DE CARRERAS</text>
-</svg>
+            <circle r="60" cx="110" cy="102" fill="orange" />
+            <circle r="57.5" cx="105" cy="100" fill="white" />
+            <circle r="50" cx="105" cy="100" fill="black" />
+            <defs>
+                <path id="circlePath" d="M 105,100 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
+            </defs>
+            <text font-size="7.5" fill="white" font-family="Arial" font-weight="bold">
+                <textPath href="#circlePath" startOffset="25%" text-anchor="middle">CLUB RENACER</textPath>
+            </text>
+            <defs>
+                <path id="circlePath1" d="M 105,95 m 40,0 a 40,40 0 1,0 -80,0 a 40,40 0 1,0 80,0" />
+            </defs>
+            <text font-size="5" fill="white" font-family="Arial" font-weight="bold">
+                <textPath href="#circlePath1" startOffset="75%" text-anchor="middle">ANSERMA-CALDAS</textPath>
+            </text> 
+            <text font-size="5" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle" x="105" y="144">2008</text>
+            <text x="66" y="110" fill="#52f845" stroke="#52f845" font-size="42.5">C</text> 
+            <text x="113" y="110" fill="#FFFF00" stroke="#FFFF00" font-size="49">A</text>
+            <text x="90" y="110" fill="orange" stroke="orange" font-size="55">R</text>
+            <text x="105" y="120" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle" font-size="6.5">PATINAJE DE CARRERAS</text>
+        </svg>
 
         <div class="header">
-            <h1>Comprobante de Pago</h1>
-            <h1>MENSUALIDAD</h1>
-            <p>Fecha de emisión: <strong id="fechaPago"></strong></p>
+            <h1>Club de patinaje</h1>
+            <h1>RENACER</h1>
+            <h4><br>Rec.Depor. Reso No. 051-Feb/015</h4>
+            <br>Nit:9001450-1<br>
+            Anserma Caldas<br>
+            
+            
+            <p>Fecha de Pago: <strong id="fechaPago"></strong></p>
         </div>
-
-        <!-- Información del arrendatario y arrendador -->
-        <div class="details-section">
-            <div class="details">
-                <div>
-                    <strong>Arrendador:</strong><br>
-                    Ever Moncada<br>
-                    Telefono: 3145842929<br>
-                </div>
-                <div>
-                    <strong>Arrendatario:</strong><br>
-                    <span id="nombreArrendatario"></span><br>
-                    Teléfono: <span id="telefonoArrendatario"></span><br>
-                    Dirección: <span id="direccionArrendatario"></span>
-                </div>
-            </div>
-
-            <div class="details">
-                <div>
-                    <strong>Periodo de Alquiler:</strong><br>
-                    Desde: <span id="fechaDesde"></span><br>
-                    Hasta: <span id="fechaHasta"></span>
-                </div>
-                <div>
-                    <strong>Método de Pago:</strong><br>
-                    <span id="MetodoPago"></span><br>
-                </div>
-            </div>
-        </div>
-
-        <!-- Detalles del pago -->
-        <div class="divider"></div>
-        <div class="invoice-items">
-            <h2>Detalles del Pago</h2>
-            <table class="invoice-items">
+         <div class="invoice-items">
+            
+            <table>
                 <thead>
                     <tr>
-                        <th>Descripción</th>
+                        <th>NOMBRE ALUMNO</th>
+                        
+                    </tr>
+                </thead>
+                
+            </table>
+        </div>
+        <div class="details-section">
+            <div class="details">
+                <br>edad: 3<br>
+                    Teléfono: 3145842929<br>
+                    Nivel: 3<br>
+                    Dias de entreno: 3<br>
+                    Valor mensualidad: 48.000<br>
+            </div>
+            
+        </div>
+         
+
+        <div class="divider"></div>
+
+        <div class="invoice-items">
+            <h2>Detalles del Pago</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mes</th>
                         <th>Cantidad</th>
                         <th>Valor Unitario</th>
                         <th>Total</th>
@@ -242,139 +195,48 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Alquiler del mes</td>
+                        <td>meses</td>
                         <td id="Nmes"></td>
                         <td id="ValorUni"></td>
                         <td id="TValorAlquiler"></td>
                     </tr>
                     <tr>
-                        <td>Deposito</td>
+                        <td>Inscripcion</td>
                         <td></td>
-                        <td ></td>
+                        <td></td>
                         <td id="ValorDepo"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
-        <!-- Totales -->
+<div class="totals">
+            <h2><strong>Subtotal:</strong> <span id="TotalPagar"></span></h2>
+        </div>
         <div class="totals">
-   
-    <div class="highlight">
-        <h2><strong>Total a Pagar:</strong>
-        <p id="TotalPagar" style="display: inline; margin: 0;"></p> </h2><!-- Añade margin: 0 para que esté alineado correctamente -->
-    </div>
-</div>
+            <h2><strong>Descuento:</strong> <span id="TotalPagar"></span></h2>
+        </div>
+        <div class="totals">
+            <h2><strong>Total a Pagar:</strong> <span id="TotalPagar"></span></h2>
+        </div>
         
-           
-           
-
         <div class="highlight">
-           
-                    <strong>Proximo pago:</strong><br>
-                    <span id="ProximoPago"></span><br>
-                    
-                </div>
-        
+            <strong>Próximo pago:</strong><br>
+            <span id="ProximoPago"></span>
+        </div>
 
-        <!-- Footer -->
         <div class="footer">
-            
             <p>Gracias por su pago.</p>
         </div>
     </div>
-</div>
-    <!-- Botón de compartir en la parte superior izquierda -->
+
     <div class="btn-compartir" id="btnCompartir">
         <img src="https://raw.githubusercontent.com/ever360/FacAlquiler1/main/share-button-.png" alt="Botón Compartir">
     </div>
 
-    <!-- Librería para convertir HTML a imagen -->
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-
-    <script>
-        document.getElementById('btnCompartir').addEventListener('click', function() {
-            const facturaElement = document.querySelector('.invoice-container');
-
-            html2canvas(facturaElement).then(function(canvas) {
-                canvas.toBlob(function(blob) {
-                    const file = new File([blob], "factura.png", { type: "image/png" });
-
-                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                        navigator.share({
-                            files: [file],
-                            title: 'Comprobante de Pago',
-                            text: 'Aquí tienes tu comprobante de pago.',
-                        })
-                        .then(() => console.log('Compartido correctamente.'))
-                        .catch((error) => console.log('Error al compartir:', error));
-                    } else {
-                        alert("Tu navegador no soporta la API de compartición.");
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>
 
-        
-    <script>
-        // Obtener los parámetros de la URL
-        const params = new URLSearchParams(window.location.search);
+ 
 
-        // Asignar valores a los campos
-        document.getElementById("fechaPago").textContent = params.get('fechaPago') || "Fecha no especificado";
-        document.getElementById("nombreArrendatario").textContent = params.get('cliente') || "Cliente no especificado";
-        document.getElementById("telefonoArrendatario").textContent = params.get('telefono') || "Teléfono no especificado";
-        document.getElementById("direccionArrendatario").textContent = params.get('direccion') || "Dirección no especificada";
-        document.getElementById("fechaDesde").textContent = params.get('fechaDesde') || "Fechan no especificada";
-        document.getElementById("fechaHasta").textContent = params.get('fechaHasta') || "Fecha no especificada";
-        document.getElementById("MetodoPago").textContent = params.get('MetodoPago') || "no especificado";
-        document.getElementById("Nmes").textContent = params.get('Nmes') || "no especificado";
-        document.getElementById("ValorUni").textContent = params.get('ValorUni') || "no especificado";
-        document.getElementById("TValorAlquiler").textContent = params.get('TValorAlquiler') || "no especificado";
-        document.getElementById("ValorDepo").textContent = params.get('ValorDepo') || "$000.00";
-        document.getElementById("TotalPagar").textContent = params.get('TotalPagar') || "$ 000.00";
-        document.getElementById("ProximoPago").textContent = params.get('ProximoPago') || "no especificado";
-        
-         
-        
-        // Obtener los valores de los parámetros
-        var boleto = params.has('boleto') ? params.get('boleto') : "boleto no especificado";
-        var fechaPago = params.has('fechaPago') ? params.get('fechaPago') : "fechaPago no especificado";
-        var nombreArrendatario = params.has('nombreArrendatario') ? params.get('nombreArrendatario') : "Cliente no especificado";
-        var telefono = params.has('telefono') ? params.get('telefono') : "telefono no especificado";
-        var desde = params.has('desde') ? params.get('desde') : "Fecha no especificado";
-        var hasta = params.has('hasta') ? params.get('hasta') : "Fecha no especificado";
-        var nit_cedula = params.has('nit_cedula') ? params.get('nit_cedula') : "nit_cedula no especificado";
-        var mes = params.has('mes') ? params.get('mes') : "Mes no especificado";
-        var valor = params.has('valor') ? params.get('valor') : "$ 0";
-        var abono = params.has('abono') ? params.get('abono') : "$ 0";
-        var cancelar = params.has('cancelar') ? params.get('cancelar') : "$ 0";
-        var totalPagar = params.has('totalPagar') ? params.get('totalPagar') : "$ 0";
-        var valorPrestamo = params.has('valorPrestamo') ? params.get('valorPrestamo') : "$ 0";
-        var valorAbono = params.has('valorAbono') ? params.get('valorAbono') : "$ 0";
-        var saldoPendiente = params.has('saldoPendiente') ? params.get('saldoPendiente') : "$ 0";
-        var proximoPago = params.has('proximoPago') ? params.get('proximoPago') : "Fecha no especificada";
 
-        // Asignar los valores a los elementos HTML
-        document.getElementById("boleto").textContent = boleto;
-        document.getElementById("fechaPago").textContent = fechaPago;
-        document.getElementById("nombreArrendatario").textContent = nombreArrendatario;
-        document.getElementById("telefono").textContent = telefono;
-        document.getElementById("desde").textContent = desde;
-        document.getElementById("hasta").textContent = hasta;
-        document.getElementById("nit_cedula").textContent = nit_cedula;
-        document.getElementById("mes").textContent = mes;
-        document.getElementById("valor").textContent = valor;
-        document.getElementById("abono").textContent = abono;
-        document.getElementById("cancelar").textContent = cancelar;
-        document.getElementById("totalPagar").textContent = totalPagar;
-        document.getElementById("valorPrestamo").textContent = valorPrestamo;
-        document.getElementById("valorAbono").textContent = valorAbono;
-        document.getElementById("saldoPendiente").textContent = saldoPendiente;
-        document.getElementById("proximoPago").textContent = proximoPago;
-    </script>
-</body>
-</html>
