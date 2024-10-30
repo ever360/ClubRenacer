@@ -146,39 +146,51 @@
 
     <div class="invoice-container">
         <!-- SVG Logo -->
-        <svg height="500" width="500" xmlns="http://www.w3.org/2000/svg">
-//circulo naraja//
-  <circle r="120" cx="220" cy="205" fill="orange" />
-//circulo blanco//  
-  <circle r="115" cx="210" cy="200" fill="white" />
-  //circulo negro//  
-  <circle r="100" cx="210" cy="200" fill="Black" />
-  defs>
-  <!-- Texto Club Renacer -->
-    <path id="circlePath" d="M 210,200 m -80,0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" />
+        <svg height="250" width="250" xmlns="http://www.w3.org/2000/svg">
+  <!-- Círculo naranja -->
+  <circle r="60" cx="110" cy="102" fill="orange" />
+  
+  <!-- Círculo blanco -->
+  <circle r="57.5" cx="105" cy="100" fill="white" />
+  
+  <!-- Círculo negro -->
+  <circle r="50" cx="105" cy="100" fill="black" />
+
+  <!-- Definir el camino para el texto "CLUB RENACER" -->
+  <defs>
+    <path id="circlePath" d="M 105,100 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
   </defs>
-  <text font-size="15" fill="white" font-family="Arial" font-weight="bold">
+  
+  <!-- Texto "CLUB RENACER" -->
+  <text font-size="7.5" fill="white" font-family="Arial" font-weight="bold">
     <textPath href="#circlePath" startOffset="25%" text-anchor="middle">
       CLUB RENACER
     </textPath>
   </text>
+
+  <!-- Definir el camino para el texto "ANSERMA-CALDAS" -->
   <defs>
-  <!-- Texto Anserma-Caldas -->
-    <path id="circlePath1" d="M 210,190 m 80,0 a 80,80 0 1,0 -160,0 a 80,80 0 1,0 160,0" />
+    <path id="circlePath1" d="M 105,95 m 40,0 a 40,40 0 1,0 -80,0 a 40,40 0 1,0 80,0" />
   </defs>
- <text font-size="10" fill="white" font-family="Comic Sans MS
-" font-weight="bold">
+  
+  <!-- Texto "ANSERMA-CALDAS" -->
+  <text font-size="5" fill="white" font-family="Comic Sans MS" font-weight="bold">
     <textPath href="#circlePath1" startOffset="75%" text-anchor="middle">
-      Anserma-Caldas </textPath></text>
-    
-    <text font-size="10" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle" x="210" y="288">2008</text>
-    
-  <text x="137" y="220" fill="#52f845" stroke="#52f845" font-size="85">C</text> 
-  <text x="220" y="220" fill="#FFFF00" stroke="#FFFF00" font-size="98">A</text>
-  <text x="180" y="220" fill="orange" stroke="orange" font-size="110">R</text>
-   <text x="140" y="240" fill="white" stroke="white" font-size="13">PATINAJE DE CARRERAS</text>
-    </svg> 
- 
+      ANSERMA-CALDAS
+    </textPath>
+  </text> 
+
+  <!-- Texto "2008" debajo de "ANSERMA-CALDAS" -->
+  <text font-size="5" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle" x="105" y="144">2008</text>
+  
+  <!-- Texto "C", "A" y "R" en el centro -->
+  <text x="68.5" y="110" fill="#52f845" stroke="#52f845" font-size="42.5">C</text> 
+  <text x="110" y="110" fill="#FFFF00" stroke="#FFFF00" font-size="49">A</text>
+  <text x="90" y="110" fill="orange" stroke="orange" font-size="55">R</text>
+
+  <!-- Texto "PATINAJE DE CARRERAS" debajo de "CAR" -->
+  <text x="105" y="120" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle" font-size="6.5">PATINAJE DE CARRERAS</text>
+</svg>
 
         <div class="header">
             <h1>Comprobante de Pago</h1>
