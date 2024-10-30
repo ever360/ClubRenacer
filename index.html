@@ -146,31 +146,39 @@
 
     <div class="invoice-container">
         <!-- SVG Logo -->
-        <div class="logo-svg">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-              <!-- Base horizontal -->
-              <rect x="15" y="120" width="155" height="5" fill="black"/>
-
-              <!-- Edificio azul (rectángulo) -->
-              <rect x="100" y="10" width="60" height="110" fill="#00a2e8"/>
-
-              <!-- Casa rosada (pentágono) -->
-              <polygon points="30,75 120,75 75,40" fill="#ed145b" opacity="0.7"/>
-              
-              <!-- Casa rosada (cuadrado) -->
-              <rect x="30" y="75" width="90" height="45" fill="#ed145b" opacity="0.7"/>
-
-              <!-- Texto "URBAN HOME" -->
-              <text x="50%" y="150" font-family="Arial" font-size="18" text-anchor="middle" fill="black">
-                URBAN HOME
-              </text>
-
-              <!-- Texto "COMPANY" -->
-              <text x="50%" y="170" font-family="Arial" font-size="12" text-anchor="middle" fill="black">
-                COMPANY
-              </text>
-            </svg>
-        </div>
+        <svg height="500" width="500" xmlns="http://www.w3.org/2000/svg">
+//circulo naraja//
+  <circle r="120" cx="220" cy="205" fill="orange" />
+//circulo blanco//  
+  <circle r="115" cx="210" cy="200" fill="white" />
+  //circulo negro//  
+  <circle r="100" cx="210" cy="200" fill="Black" />
+  defs>
+  <!-- Texto Club Renacer -->
+    <path id="circlePath" d="M 210,200 m -80,0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" />
+  </defs>
+  <text font-size="15" fill="white" font-family="Arial" font-weight="bold">
+    <textPath href="#circlePath" startOffset="25%" text-anchor="middle">
+      CLUB RENACER
+    </textPath>
+  </text>
+  <defs>
+  <!-- Texto Anserma-Caldas -->
+    <path id="circlePath1" d="M 210,190 m 80,0 a 80,80 0 1,0 -160,0 a 80,80 0 1,0 160,0" />
+  </defs>
+ <text font-size="10" fill="white" font-family="Comic Sans MS
+" font-weight="bold">
+    <textPath href="#circlePath1" startOffset="75%" text-anchor="middle">
+      Anserma-Caldas </textPath></text>
+    
+    <text font-size="10" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle" x="210" y="288">2008</text>
+    
+  <text x="137" y="220" fill="#52f845" stroke="#52f845" font-size="85">C</text> 
+  <text x="220" y="220" fill="#FFFF00" stroke="#FFFF00" font-size="98">A</text>
+  <text x="180" y="220" fill="orange" stroke="orange" font-size="110">R</text>
+   <text x="140" y="240" fill="white" stroke="white" font-size="13">PATINAJE DE CARRERAS</text>
+    </svg> 
+ 
 
         <div class="header">
             <h1>Comprobante de Pago</h1>
