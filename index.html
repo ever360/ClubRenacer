@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprobante de Pago Alquiler</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .invoice-container {
+        width: 8.5in; /* Ancho de una hoja tamaño carta */
+        height: 11in; /* Alto de una hoja tamaño carta */
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 1in; /* Márgenes de 1 pulgada */
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box; /* Asegura que padding y borde estén incluidos en el tamaño total */
+    }
+
+    @media print {
+        body {
+            background-color: #fff;
+            margin: 0;
+        }
+
+        .invoice-container {
+            width: 100%; /* Asegura que ocupe todo el ancho de la página en impresión */
+            height: auto; /* Deja que el contenido determine la altura */
+            box-shadow: none; /* Elimina la sombra durante la impresión */
+            padding: 0; /* Elimina el padding extra al imprimir */
+            margin: 0; /* Elimina márgenes al imprimir */
+        }
+
+        .btn-compartir {
+            display: none; /* Oculta el botón de compartir al imprimir */
+        }
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .header h1 {
+        margin: 10px 0;
+        font-size: 24px;
+        color: #333;
+    }
+
+    .details-section {
+        margin-bottom: 40px;
+    }
+
+    .details {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .details strong {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .invoice-items table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .invoice-items th, .invoice-items td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .invoice-items th {
+        background-color: #f0f0f0;
+        color: #333;
+    }
+
+    .totals {
+        margin-top: 20px;
+        text-align: right;;
+         
+    }
+
+    .totals div {
+        margin-bottom: 10px;
+    }
+
+    .totals strong {
+        font-size: 18px;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 50px;
+        color: #777;
+    }
+
+    .highlight {
+        color: #4CAF50;
+        font-size: 16px;
+    }
+
+    .divider {
+        height: 1px;
+        background-color: #ddd;
+        margin: 20px 0;
+    }
+
+    /* Posiciona el botón de compartir en la parte superior izquierda */
+    .btn-compartir {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+
+    .btn-compartir img {
+        width: 50px;  /* Ajusta el tamaño del botón si es necesario */
+        height: auto;
+        cursor: pointer;
+    }
+
+    .logo-svg {
+        width: 200px;
+        height: 200px;
+        margin: 20px auto;
+        display: block;
+    }
+
+     .invoice-items th {
+        background-color: #00a2e8; /* Color azul */
+        color: #fff; /* Color de texto blanco para contraste */
+    }   
+</style>
+</head>
+<body>
+
+    <div class="invoice-container">
+        <!-- SVG Logo -->
+        <div class="logo-svg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+              <!-- Base horizontal -->
+              <rect x="15" y="120" width="155" height="5" fill="black"/>
+
+              <!-- Edificio azul (rectángulo) -->
+              <rect x="100" y="10" width="60" height="110" fill="#00a2e8"/>
+
+              <!-- Casa rosada (pentágono) -->
+              <polygon points="30,75 120,75 75,40" fill="#ed145b" opacity="0.7"/>
+              
+              <!-- Casa rosada (cuadrado) -->
+              <rect x="30" y="75" width="90" height="45" fill="#ed145b" opacity="0.7"/>
+
+              <!-- Texto "URBAN HOME" -->
+              <text x="50%" y="150" font-family="Arial" font-size="18" text-anchor="middle" fill="black">
+                URBAN HOME
+              </text>
+
+              <!-- Texto "COMPANY" -->
+              <text x="50%" y="170" font-family="Arial" font-size="12" text-anchor="middle" fill="black">
+                COMPANY
+              </text>
+            </svg>
+        </div>
+
+        <div class="header">
+            <h1>Comprobante de Pago</h1>
+            <h1>ALQUILER</h1>
+            <p>Fecha de emisión: <strong id="fechaPago"></strong></p>
+        </div>
+
+        <!-- Información del arrendatario y arrendador -->
+        <div class="details-section">
+            <div class="details">
+                <div>
+                    <strong>Arrendador:</strong><br>
+                    Ever Moncada<br>
+                    Telefono: 3145842929<br>
+                </div>
+                <div>
+                    <strong>Arrendatario:</strong><br>
+                    <span id="nombreArrendatario"></span><br>
+                    Teléfono: <span id="telefonoArrendatario"></span><br>
+                    Dirección: <span id="direccionArrendatario"></span>
+                </div>
+            </div>
+
+            <div class="details">
+                <div>
+                    <strong>Periodo de Alquiler:</strong><br>
+                    Desde: <span id="fechaDesde"></span><br>
+                    Hasta: <span id="fechaHasta"></span>
+                </div>
+                <div>
+                    <strong>Método de Pago:</strong><br>
+                    <span id="MetodoPago"></span><br>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detalles del pago -->
+        <div class="divider"></div>
+        <div class="invoice-items">
+            <h2>Detalles del Pago</h2>
+            <table class="invoice-items">
+                <thead>
+                    <tr>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                        <th>Valor Unitario</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alquiler del mes</td>
+                        <td id="Nmes"></td>
+                        <td id="ValorUni"></td>
+                        <td id="TValorAlquiler"></td>
+                    </tr>
+                    <tr>
+                        <td>Deposito</td>
+                        <td></td>
+                        <td ></td>
+                        <td id="ValorDepo"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Totales -->
+        <div class="totals">
+   
+    <div class="highlight">
+        <h2><strong>Total a Pagar:</strong>
+        <p id="TotalPagar" style="display: inline; margin: 0;"></p> </h2><!-- Añade margin: 0 para que esté alineado correctamente -->
+    </div>
+</div>
+        
+           
+           
+
+        <div class="highlight">
+           
+                    <strong>Proximo pago:</strong><br>
+                    <span id="ProximoPago"></span><br>
+                    
+                </div>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            
+            <p>Gracias por su pago.</p>
+        </div>
+    </div>
+</div>
+    <!-- Botón de compartir en la parte superior izquierda -->
+    <div class="btn-compartir" id="btnCompartir">
+        <img src="https://raw.githubusercontent.com/ever360/FacAlquiler1/main/share-button-.png" alt="Botón Compartir">
+    </div>
+
+    <!-- Librería para convertir HTML a imagen -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+    <script>
+        document.getElementById('btnCompartir').addEventListener('click', function() {
+            const facturaElement = document.querySelector('.invoice-container');
+
+            html2canvas(facturaElement).then(function(canvas) {
+                canvas.toBlob(function(blob) {
+                    const file = new File([blob], "factura.png", { type: "image/png" });
+
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        navigator.share({
+                            files: [file],
+                            title: 'Comprobante de Pago',
+                            text: 'Aquí tienes tu comprobante de pago.',
+                        })
+                        .then(() => console.log('Compartido correctamente.'))
+                        .catch((error) => console.log('Error al compartir:', error));
+                    } else {
+                        alert("Tu navegador no soporta la API de compartición.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+        
+    <script>
+        // Obtener los parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+
+        // Asignar valores a los campos
+        document.getElementById("fechaPago").textContent = params.get('fechaPago') || "Fecha no especificado";
+        document.getElementById("nombreArrendatario").textContent = params.get('cliente') || "Cliente no especificado";
+        document.getElementById("telefonoArrendatario").textContent = params.get('telefono') || "Teléfono no especificado";
+        document.getElementById("direccionArrendatario").textContent = params.get('direccion') || "Dirección no especificada";
+        document.getElementById("fechaDesde").textContent = params.get('fechaDesde') || "Fechan no especificada";
+        document.getElementById("fechaHasta").textContent = params.get('fechaHasta') || "Fecha no especificada";
+        document.getElementById("MetodoPago").textContent = params.get('MetodoPago') || "no especificado";
+        document.getElementById("Nmes").textContent = params.get('Nmes') || "no especificado";
+        document.getElementById("ValorUni").textContent = params.get('ValorUni') || "no especificado";
+        document.getElementById("TValorAlquiler").textContent = params.get('TValorAlquiler') || "no especificado";
+        document.getElementById("ValorDepo").textContent = params.get('ValorDepo') || "$000.00";
+        document.getElementById("TotalPagar").textContent = params.get('TotalPagar') || "$ 000.00";
+        document.getElementById("ProximoPago").textContent = params.get('ProximoPago') || "no especificado";
+        
+         
+        
+        // Obtener los valores de los parámetros
+        var boleto = params.has('boleto') ? params.get('boleto') : "boleto no especificado";
+        var fechaPago = params.has('fechaPago') ? params.get('fechaPago') : "fechaPago no especificado";
+        var nombreArrendatario = params.has('nombreArrendatario') ? params.get('nombreArrendatario') : "Cliente no especificado";
+        var telefono = params.has('telefono') ? params.get('telefono') : "telefono no especificado";
+        var desde = params.has('desde') ? params.get('desde') : "Fecha no especificado";
+        var hasta = params.has('hasta') ? params.get('hasta') : "Fecha no especificado";
+        var nit_cedula = params.has('nit_cedula') ? params.get('nit_cedula') : "nit_cedula no especificado";
+        var mes = params.has('mes') ? params.get('mes') : "Mes no especificado";
+        var valor = params.has('valor') ? params.get('valor') : "$ 0";
+        var abono = params.has('abono') ? params.get('abono') : "$ 0";
+        var cancelar = params.has('cancelar') ? params.get('cancelar') : "$ 0";
+        var totalPagar = params.has('totalPagar') ? params.get('totalPagar') : "$ 0";
+        var valorPrestamo = params.has('valorPrestamo') ? params.get('valorPrestamo') : "$ 0";
+        var valorAbono = params.has('valorAbono') ? params.get('valorAbono') : "$ 0";
+        var saldoPendiente = params.has('saldoPendiente') ? params.get('saldoPendiente') : "$ 0";
+        var proximoPago = params.has('proximoPago') ? params.get('proximoPago') : "Fecha no especificada";
+
+        // Asignar los valores a los elementos HTML
+        document.getElementById("boleto").textContent = boleto;
+        document.getElementById("fechaPago").textContent = fechaPago;
+        document.getElementById("nombreArrendatario").textContent = nombreArrendatario;
+        document.getElementById("telefono").textContent = telefono;
+        document.getElementById("desde").textContent = desde;
+        document.getElementById("hasta").textContent = hasta;
+        document.getElementById("nit_cedula").textContent = nit_cedula;
+        document.getElementById("mes").textContent = mes;
+        document.getElementById("valor").textContent = valor;
+        document.getElementById("abono").textContent = abono;
+        document.getElementById("cancelar").textContent = cancelar;
+        document.getElementById("totalPagar").textContent = totalPagar;
+        document.getElementById("valorPrestamo").textContent = valorPrestamo;
+        document.getElementById("valorAbono").textContent = valorAbono;
+        document.getElementById("saldoPendiente").textContent = saldoPendiente;
+        document.getElementById("proximoPago").textContent = proximoPago;
+    </script>
+</body>
+</html>
