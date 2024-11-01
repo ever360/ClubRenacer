@@ -112,25 +112,18 @@
             color: #777;
         }
 
-        .btn-compartir, .btn-wps {
-            position: fixed;
-            top: 20px;
-            z-index: 1000;
-        }
-
         .btn-compartir {
-            left: 20px; /* Botón compartir a la izquierda */
-        }
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
 
-        .btn-wps {
-            right: 20px; /* Botón WhatsApp a la derecha */
-        }
-
-        .btn-compartir img, .btn-wps img {
-            width: 50px; /* Asegúrate de que ambos botones tengan el mismo tamaño */
-            height: auto;
-            cursor: pointer;
-        }
+    .btn-compartir img {
+        width: 50px;  /* Ajusta el tamaño del botón si es necesario */
+        height: auto;
+        cursor: pointer;
+    }
 
         .naranja {
             color: orange;
@@ -259,27 +252,12 @@
             <p colspan="2">CEL: 3116217911 - 3105960460</p>
         </div>
     </div>
-     
-    <a href="#" class="btn-compartir" onclick="btnCompartir()">
-        <img src="https://raw.githubusercontent.com/ever360/ClubRenacer/refs/heads/main/share-button-.png" alt="Compartir en Facebook">
-    </a>
+    <!-- Botón de compartir en la parte superior izquierda -->
+    <div class="btn-compartir" id="btnCompartir">
+        <img src="https://raw.githubusercontent.com/ever360/FacAlquiler1/main/share-button-.png" alt="Botón Compartir">
+    </div>
 
-    <a href="#" class="btn-wps" onclick="compartirEnWhatsApp()">
-        <img src="https://raw.githubusercontent.com/ever360/ClubRenacer/refs/heads/main/wsp%20(1).png" alt="boton wsp">
-    </a>
-
-    <script>
-        function compartirEnFacebook() {
-            // Implementar la funcionalidad de compartir en Facebook
-            alert("Compartir en Facebook");
-        }
-
-        function compartirEnWhatsApp() {
-            // Implementar la funcionalidad de compartir en WhatsApp
-            alert("Compartir en WhatsApp");
-        }
-    </script>
-     <!-- Librería para convertir HTML a imagen -->
+    <!-- Librería para convertir HTML a imagen -->
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
     <script>
@@ -304,7 +282,8 @@
                 });
             });
         });
-    </script>
+    </script> 
+    
     <script>
         // Obtener los parámetros de la URL
         const params = new URLSearchParams(window.location.search);
