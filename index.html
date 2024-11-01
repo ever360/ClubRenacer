@@ -238,14 +238,14 @@
         </div>
 
         <div class="totals">
-            <h3><strong>Subtotal:</strong> <span id="TotalPagar"></span></h3>
-        </div>
-        <div class="totals">
-            <h3><strong>Descuento:</strong> <span id="TotalPagar"></span></h3>
-        </div>
-        <div class="totals">
-            <h3><strong>Total a Pagar:</strong> <span class="highlight" id="TotalPagar"></span></h3>
-        </div>
+    <h3><strong>Subtotal:</strong> <span id="subtotal"></span></h3>
+</div>
+<div class="totals">
+    <h3><strong>Descuento:</strong> <span id="descuento"></span></h3>
+</div>
+<div class="totals">
+    <h3><strong>Total a Pagar:</strong> <span class="highlight" id="totalPagar"></span></h3>
+</div>
         
         <div class="footer">
             <p>¡Gracias por tu preferencia!</p>
@@ -256,7 +256,27 @@
     <div class="btn-compartir" id="btnCompartir">
         <img src="https://raw.githubusercontent.com/ever360/FacAlquiler1/main/share-button-.png" alt="Botón Compartir">
     </div>
+ <script>
+    function calcularTotal() {
+        // Obtener los valores de TValor e inscripción
+        const TValor = parseFloat(document.getElementById("TValor").textContent) || 0;
+        const inscripcion = parseFloat(document.getElementById("inscripcion").textContent) || 0;
+        
+        // Calcular subtotal como la suma de TValor e inscripción
+        const subtotal = TValor + inscripcion;
+        document.getElementById("subtotal").textContent = subtotal.toFixed(2);
 
+        // Obtener el descuento
+        const descuento = parseFloat(document.getElementById("descuento").textContent) || 0;
+
+        // Calcular total a pagar restando el descuento al subtotal
+        const totalPagar = subtotal - descuento;
+        document.getElementById("totalPagar").textContent = totalPagar.toFixed(2);
+    }
+
+    // Ejecutar la función cuando se cargue la página
+    calcularTotal();
+</script>
     <!-- Librería para convertir HTML a imagen -->
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
@@ -302,7 +322,7 @@
         document.getElementById("inscripcion").textContent = params.get('inscripcion') || "$ 000.00";
         
         document.getElementById("TotalPagar").textContent = params.get('TotalPagar') || "$ 000.00";
-        document.getElementById("ProximoPago").textContent = params.get('ProximoPago') || "no especificado";
+        document.getElementById("descuento").textContent = params.get('descuento') || "$ 0";
         
          
         
@@ -324,7 +344,7 @@
         var totalPagar = params.has('totalPagar') ? params.get('totalPagar') : "$ 0";
        
         var saldoPendiente = params.has('inscripcion') ? params.get('inscripcion') : "$ 0";
-        var proximoPago = params.has('proximoPago') ? params.get('proximoPago') : "Fecha no especificada";
+        var proximoPago = params.has('descuento') ? params.get('descuento') : "$ 0";
 
         // Asignar los valores a los elementos HTML
         document.getElementById("boleto").textContent = boleto;
@@ -335,14 +355,12 @@
         document.getElementById("Nivel").textContent = Nivel;
         document.getElementById("DiasEntreno").textContent = DiasEntreno;
         document.getElementById("ValorMensualidad").textContent = ValorMensualidad;
-        
         document.getElementById("Nmes").textContent = Nmes;
-        
         document.getElementById("ValorUni").textContent = ValorUni;
         document.getElementById("TValor").textContent = TValor;\
         document.getElementById("inscripcion").textContent = inscripcion;
+        document.getElementById("descuento").textContent = descuento;
         
-        document.getElementById("valorPrestamo").textContent = valorPrestamo;
         document.getElementById("valorAbono").textContent = valorAbono;
         document.getElementById("saldoPendiente").textContent = saldoPendiente;
         document.getElementById("proximoPago").textContent = proximoPago;
