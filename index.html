@@ -15,17 +15,15 @@
             background-color: #f4f4f4;
             min-height: 100vh;
         }
-
         .invoice-container {
             width: 8.5in;
-            height: 11in;
+            height: 15in;
             background-color: #fff;
-            padding: 1in;
+            padding: 0.5in;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
         }
-
         @media print {
             body {
                 background-color: #fff;
@@ -42,78 +40,58 @@
                 display: none;
             }
         }
-
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
-
         .header h1 {
             margin: 5px 0;
             font-size: 24px;
             color: #333;
         }
-
-        .details-section {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
+        .naranja {
+            color: orange;
         }
-
-        .details {
-            flex-basis: 45%;
+        .table-container {
+            margin-top: 20px;
         }
-
-        .details strong {
-            font-weight: bold;
-            color: #555;
-        }
-
-        .invoice-items table {
+        table {
             width: 100%;
             border-collapse: collapse;
         }
-
-        .invoice-items th, .invoice-items td {
+        th, td {
+            border: 1px solid black;
             padding: 10px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
+            text-align: center;
         }
-
-        .invoice-items th {
-            background-color: #FFC300;
-            color: #fff;
+        th {
+            background-color: orange;
+            color: white;
         }
-
         .totals {
             text-align: right;
             margin-top: 20px;
         }
-
         .highlight {
             color: #4CAF50;
             font-size: 16px;
         }
-
         .divider {
             height: 1px;
             background-color: #ddd;
             margin: 20px 0;
         }
-
         .footer {
             text-align: center;
             margin-top: 30px;
             color: #777;
         }
-
         .btn-compartir {
             position: fixed;
             top: 20px;
             left: 20px;
             z-index: 1000;
         }
-
         .btn-compartir img {
             width: 50px;
             height: auto;
@@ -123,62 +101,38 @@
 </head>
 <body>
     <div class="invoice-container">
-        <svg height="250" width="250" xmlns="http://www.w3.org/2000/svg">
-            <circle r="60" cx="110" cy="102" fill="orange" />
-            <circle r="57.5" cx="105" cy="100" fill="white" />
-            <circle r="50" cx="105" cy="100" fill="black" />
-            <defs>
-                <path id="circlePath" d="M 105,100 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
-            </defs>
-            <text font-size="7.5" fill="white" font-family="Arial" font-weight="bold">
-                <textPath href="#circlePath" startOffset="25%" text-anchor="middle">CLUB RENACER</textPath>
-            </text>
-            <defs>
-                <path id="circlePath1" d="M 105,95 m 40,0 a 40,40 0 1,0 -80,0 a 40,40 0 1,0 80,0" />
-            </defs>
-            <text font-size="5" fill="white" font-family="Arial" font-weight="bold">
-                <textPath href="#circlePath1" startOffset="75%" text-anchor="middle">ANSERMA-CALDAS</textPath>
-            </text> 
-            <text font-size="5" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle" x="105" y="144">2008</text>
-            <text x="66" y="110" fill="#52f845" stroke="#52f845" font-size="42.5">C</text> 
-            <text x="113" y="110" fill="#FFFF00" stroke="#FFFF00" font-size="49">A</text>
-            <text x="90" y="110" fill="orange" stroke="orange" font-size="55">R</text>
-            <text x="105" y="120" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle" font-size="6.5">PATINAJE DE CARRERAS</text>
-        </svg>
-
         <div class="header">
-            <h1>Club de patinaje</h1>
-            <h1>RENACER</h1>
-            <h4><br>Rec.Depor. Reso No. 051-Feb/015</h4>
-            <br>Nit:9001450-1<br>
-            Anserma Caldas<br>
-            
-            
-            <p>Fecha de Pago: <strong id="fechaPago"></strong></p>
+            <h1>Club de Patinaje</h1>
+            <h1><span class="naranja">RENACER</span></h1>
         </div>
-         <div class="invoice-items">
-            
+        
+        <div class="table-container">
             <table>
-                <thead>
-                    <tr>
-                        <th>NOMBRE ALUMNO</th>
-                        
-                    </tr>
-                </thead>
-                
+                <tr>
+                    <th colspan="2">Nombre Alumno</th>
+                </tr>
+                <tr>
+                    <td>Edad</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Teléfono</td>
+                    <td>3145842929</td>
+                </tr>
+                <tr>
+                    <td>Nivel</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Días de Entreno</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Valor Mensualidad</td>
+                    <td>$38,000</td>
+                </tr>
             </table>
         </div>
-        <div class="details-section">
-            <div class="details">
-                <br>edad: 3<br>
-                    Teléfono: 3145842929<br>
-                    Nivel: 3<br>
-                    Dias de entreno: 3<br>
-                    Valor mensualidad: 48.000<br>
-            </div>
-            
-        </div>
-         
 
         <div class="divider"></div>
 
@@ -195,13 +149,13 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>meses</td>
+                        <td>Meses</td>
                         <td id="Nmes"></td>
                         <td id="ValorUni"></td>
                         <td id="TValorAlquiler"></td>
                     </tr>
                     <tr>
-                        <td>Inscripcion</td>
+                        <td>Inscripción</td>
                         <td></td>
                         <td></td>
                         <td id="ValorDepo"></td>
@@ -209,18 +163,15 @@
                 </tbody>
             </table>
         </div>
-<div class="totals">
-            <h2><strong>Subtotal:</strong> <span id="TotalPagar"></span></h2>
-        </div>
+
         <div class="totals">
-            <h2><strong>Descuento:</strong> <span id="TotalPagar"></span></h2>
+            <h3><strong>Subtotal:</strong> <span id="TotalPagar"></span></h3>
+            <h3><strong>Descuento:</strong> <span id="TotalPagar"></span></h3>
+            <h3><strong>Total a Pagar:</strong> <span id="TotalPagar"></span></h3>
         </div>
-        <div class="totals">
-            <h2><strong>Total a Pagar:</strong> <span id="TotalPagar"></span></h2>
-        </div>
-        
+
         <div class="highlight">
-            <strong>Próximo pago:</strong><br>
+            <strong class="naranja">Próximo Pago:</strong><br>
             <span id="ProximoPago"></span>
         </div>
 
@@ -236,7 +187,5 @@
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </body>
 </html>
-
- 
 
 
