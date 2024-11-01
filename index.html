@@ -187,23 +187,23 @@
             </tr>
             <tr>
                 <td>Edad</td>
-                <td>3</td>
+                <td id="Edad"></td>
             </tr>
             <tr>
                 <td>Telefono</td>
-                <td>3145842929</td>
+                <td id="Telefono"></td>
             </tr>
             <tr>
                 <td>Nivel</td>
-                <td>3</td>
+                <td id="Nivel"></td>
             </tr>
             <tr>
                 <td>Dias entreno</td>
-                <td>3</td>
+                <td id="DiasEntreno"></td>
             </tr>
             <tr>
                 <td>Valor mensualidad</td>
-                <td>$ 38.000</td>
+                <td id="ValorMensualidad"></td>
             </tr>
         </table>
 
@@ -291,11 +291,11 @@
         // Asignar valores a los campos
         document.getElementById("fechaPago").textContent = params.get('fechaPago') || "Fecha no especificado";
         document.getElementById("nombreAlumno").textContent = params.get('nombreAlumno') || "Alunmo no especificado";
-        document.getElementById("telefonoArrendatario").textContent = params.get('telefono') || "Teléfono no especificado";
-        document.getElementById("direccionArrendatario").textContent = params.get('direccion') || "Dirección no especificada";
-        document.getElementById("fechaDesde").textContent = params.get('fechaDesde') || "Fechan no especificada";
-        document.getElementById("fechaHasta").textContent = params.get('fechaHasta') || "Fecha no especificada";
-        document.getElementById("MetodoPago").textContent = params.get('MetodoPago') || "no especificado";
+        document.getElementById("Edad").textContent = params.get('Edad') || "Edad no especificado";
+        document.getElementById("Telefono").textContent = params.get('Telefono') || "Telefono no especificada";
+        document.getElementById("Nivel").textContent = params.get('Nivel') || "Nivel no especificada";
+        document.getElementById("DiasEntreno").textContent = params.get('DiasEntreno') || "no especificada";
+        document.getElementById("ValorMensualidad").textContent = params.get('ValorMensualidad') || "Valor no especificado";
         document.getElementById("Nmes").textContent = params.get('Nmes') || "no especificado";
         document.getElementById("ValorUni").textContent = params.get('ValorUni') || "no especificado";
         document.getElementById("TValorAlquiler").textContent = params.get('TValorAlquiler') || "no especificado";
@@ -309,11 +309,12 @@
         var boleto = params.has('boleto') ? params.get('boleto') : "boleto no especificado";
         var fechaPago = params.has('fechaPago') ? params.get('fechaPago') : "fechaPago no especificado";
         var nombreArrendatario = params.has('nombreAlumno') ? params.get('nombreAlumno') : "Alumno no especificado";
-        var telefono = params.has('telefono') ? params.get('telefono') : "telefono no especificado";
-        var desde = params.has('desde') ? params.get('desde') : "Fecha no especificado";
-        var hasta = params.has('hasta') ? params.get('hasta') : "Fecha no especificado";
-        var nit_cedula = params.has('nit_cedula') ? params.get('nit_cedula') : "nit_cedula no especificado";
-        var mes = params.has('mes') ? params.get('mes') : "Mes no especificado";
+        var telefono = params.has('Edad') ? params.get('Edad') : "Edad no especificado";
+        var desde = params.has('Telefono') ? params.get('Telefono') : "Telefono no especificado";
+        var hasta = params.has('Nivel') ? params.get('Nivel') : "Nivel no especificado";
+         var mes = params.has('DiasEntreno') ? params.get('DiasEntreno') : " no especificado";
+        var nit_cedula = params.has('ValorMensualidad') ? params.get('ValorMensualidad') : "Valor no especificado";
+       
         var valor = params.has('valor') ? params.get('valor') : "$ 0";
         var abono = params.has('abono') ? params.get('abono') : "$ 0";
         var cancelar = params.has('cancelar') ? params.get('cancelar') : "$ 0";
@@ -327,11 +328,11 @@
         document.getElementById("boleto").textContent = boleto;
         document.getElementById("fechaPago").textContent = fechaPago;
         document.getElementById("nombreAlumno").textContent = nombreAlumno;
-        document.getElementById("telefono").textContent = telefono;
-        document.getElementById("desde").textContent = desde;
-        document.getElementById("hasta").textContent = hasta;
-        document.getElementById("nit_cedula").textContent = nit_cedula;
-        document.getElementById("mes").textContent = mes;
+        document.getElementById("Edad").textContent = Edad;
+        document.getElementById("Telefono").textContent = Telefono;
+        document.getElementById("Nivel").textContent = Nivel;
+        document.getElementById("DiasEntreno").textContent = DiasEntreno;
+        document.getElementById("ValorMensualidad").textContent = ValorMensualidad;
         document.getElementById("valor").textContent = valor;
         document.getElementById("abono").textContent = abono;
         document.getElementById("cancelar").textContent = cancelar;
