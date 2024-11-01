@@ -38,7 +38,7 @@
                 padding: 0;
                 margin: 0;
             }
-            .btn-compartir {
+            .btn-compartir, .btn-wps {
                 display: none;
             }
         }
@@ -112,53 +112,48 @@
             color: #777;
         }
 
+        .btn-compartir, .btn-wps {
+            position: fixed;
+            top: 20px;
+            z-index: 1000;
+        }
+
         .btn-compartir {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
+            left: 20px; /* Botón compartir a la izquierda */
         }
 
-        .btn-compartir img {
-            width: 50px;
+        .btn-wps {
+            right: 20px; /* Botón WhatsApp a la derecha */
+        }
+
+        .btn-compartir img, .btn-wps img {
+            width: 50px; /* Asegúrate de que ambos botones tengan el mismo tamaño */
             height: auto;
             cursor: pointer;
         }
-        
-        btn-wps {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
 
-        .btn-wps img {
-            width: 10px;
-            height: auto;
-            cursor: pointer;
-        }
         .naranja {
-        color: orange;
-    }
-    
-    table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-    th {
-            background-color: orange; 
+            color: orange;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: orange;
             color: white; /* Cambia el color del texto a blanco */
             text-align: center; /* Centra el texto en el encabezado */
             padding: 10px; /* Aumenta el padding para que sea más ancho */
         }
-    
     </style>
 </head>
 <body>
     <div class="invoice-container">
         <div class="header">
             <h1>Club de patinaje</h1>
-            <h1> <span class="naranja">RENACER</span></h1>
+            <h1><span class="naranja">RENACER</span></h1>
         </div>
         <div class="logo-container">
             <svg height="250" width="250" xmlns="http://www.w3.org/2000/svg">
@@ -176,55 +171,50 @@
                 </defs>
                 <text font-size="5" fill="white" font-family="Arial" font-weight="bold">
                     <textPath href="#circlePath1" startOffset="75%" text-anchor="middle">ANSERMA-CALDAS</textPath>
-                </text> 
+                </text>
                 <text font-size="5" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle" x="105" y="144">2008</text>
-                <text x="66" y="110" fill="#52f845" stroke="#52f845" font-size="42.5">C</text> 
+                <text x="66" y="110" fill="#52f845" stroke="#52f845" font-size="42.5">C</text>
                 <text x="113" y="110" fill="#FFFF00" stroke="#FFFF00" font-size="49">A</text>
                 <text x="90" y="110" fill="orange" stroke="orange" font-size="55">R</text>
                 <text x="105" y="120" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle" font-size="6.5">PATINAJE DE CARRERAS</text>
             </svg>
 
-       <div clas=".details ">
-            <br>Rec.Depor. Reso No. 051-Feb/015
-            <br>Nit:9001450-1<br>
-            Anserma Caldas<br>
-        </div>     
-            
-           <p style="text-align: left;"><strong>Fecha de pago:</strong> <span id="FechaPago"></span></p>
+            <div class="details">
+                <br>Rec.Depor. Reso No. 051-Feb/015
+                <br>Nit:9001450-1<br>
+                Anserma Caldas<br>
+            </div>     
+
+            <p style="text-align: left;"><strong>Fecha de pago:</strong> <span id="FechaPago"></span></p>
         </div>
         
         <table style="width:100%">
-  <tr>
-    <th colspan="2">Nombre alumno</th>
-    
-  </tr>
-  <tr>
-    <td>Edad</td>
-    <td>3</td>
-  </tr>
-    
-  <tr>
-    <td>Telefono</td>
-    <td>3145842929</td>
-  </tr>
-   <tr>
-    <td>Nivel </td>
-    <td>3</td>
-  </tr>
-  <tr>
-    <td>Dias entreno </td>
-    <td>3</td>
-  </tr>
-   <tr>
-    <td>Valor mensualidad</td>
-    <td>$ 38.000</td>
-  </tr>
-</table>
-     
-        
-         
-<div class="divider"></div>
-        
+            <tr>
+                <th colspan="2">Nombre alumno</th>
+            </tr>
+            <tr>
+                <td>Edad</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Telefono</td>
+                <td>3145842929</td>
+            </tr>
+            <tr>
+                <td>Nivel</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Dias entreno</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Valor mensualidad</td>
+                <td>$ 38.000</td>
+            </tr>
+        </table>
+
+        <div class="divider"></div>
 
         <div class="invoice-items">
             <h2>Detalles del Pago</h2>
@@ -253,98 +243,41 @@
                 </tbody>
             </table>
         </div>
-<div class="totals">
+
+        <div class="totals">
             <h3><strong>Subtotal:</strong> <span id="TotalPagar"></span></h3>
         </div>
         <div class="totals">
             <h3><strong>Descuento:</strong> <span id="TotalPagar"></span></h3>
         </div>
         <div class="totals">
-            <h3><strong>Total a Pagar:</strong> <span id="TotalPagar"></span></h3>
+            <h3><strong>Total a Pagar:</strong> <span class="highlight" id="TotalPagar"></span></h3>
         </div>
         
-        <div class="highlight">
-            <strong  class="naranja">Próximo pago:</strong><br>
-            <span id="ProximoPago"></span>
-        </div>
-
         <div class="footer">
-            <p>Gracias por su pago.</p>
-            
+            <p>¡Gracias por tu preferencia!</p>
+            <p colspan="2">CEL: 3116217911 - 3105960460</p>
         </div>
-            <table style="width:100%">
-  <tr>
-    <th colspan="2">CEL: 3116217911 - 3105960460</th>
-    </tr>
-    </table>
-
-</div>
-    <div class="btn-compartir" id="btnCompartir">
-        <img src="https://raw.githubusercontent.com/ever360/ClubRenacer/refs/heads/main/share-button-.png" alt="Botón Compartir">
-    </div>
-     <div class="btn-wsp" id=" btnwps">
-        <img src="https://raw.githubusercontent.com/ever360/ClubRenacer/refs/heads/main/wsp%20(1).png" alt="Botón Compartir">
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <a href="#" class="btn-compartir" onclick="compartirEnFacebook()">
+        <img src="facebook-icon.png" alt="Compartir en Facebook">
+    </a>
 
-     <script>
-        // Obtener los parámetros de la URL
-        const params = new URLSearchParams(window.location.search);
+    <a href="#" class="btn-wps" onclick="compartirEnWhatsApp()">
+        <img src="whatsapp-icon.png" alt="Compartir en WhatsApp">
+    </a>
 
-        // Asignar valores a los campos
-        document.getElementById("FechaPago").textContent = params.get('FechaPago') || "Fecha no especificado";
-        document.getElementById("nombreArrendatario").textContent = params.get('cliente') || "Cliente no especificado";
-        document.getElementById("telefonoArrendatario").textContent = params.get('telefono') || "Teléfono no especificado";
-        document.getElementById("direccionArrendatario").textContent = params.get('direccion') || "Dirección no especificada";
-        document.getElementById("fechaDesde").textContent = params.get('fechaDesde') || "Fechan no especificada";
-        document.getElementById("fechaHasta").textContent = params.get('fechaHasta') || "Fecha no especificada";
-        document.getElementById("MetodoPago").textContent = params.get('MetodoPago') || "no especificado";
-        document.getElementById("Nmes").textContent = params.get('Nmes') || "no especificado";
-        document.getElementById("ValorUni").textContent = params.get('ValorUni') || "no especificado";
-        document.getElementById("TValorAlquiler").textContent = params.get('TValorAlquiler') || "no especificado";
-        document.getElementById("ValorDepo").textContent = params.get('ValorDepo') || "$000.00";
-        document.getElementById("TotalPagar").textContent = params.get('TotalPagar') || "$ 000.00";
-        document.getElementById("ProximoPago").textContent = params.get('ProximoPago') || "no especificado";
-        
-         
-        
-        // Obtener los valores de los parámetros
-        var boleto = params.has('boleto') ? params.get('boleto') : "boleto no especificado";
-        var fechaPago = params.has('FechaPago') ? params.get('FechaPago') : "fechaPago no especificado";
-        var nombreArrendatario = params.has('nombreArrendatario') ? params.get('nombreArrendatario') : "Cliente no especificado";
-        var telefono = params.has('telefono') ? params.get('telefono') : "telefono no especificado";
-        var desde = params.has('desde') ? params.get('desde') : "Fecha no especificado";
-        var hasta = params.has('hasta') ? params.get('hasta') : "Fecha no especificado";
-        var nit_cedula = params.has('nit_cedula') ? params.get('nit_cedula') : "nit_cedula no especificado";
-        var mes = params.has('mes') ? params.get('mes') : "Mes no especificado";
-        var valor = params.has('valor') ? params.get('valor') : "$ 0";
-        var abono = params.has('abono') ? params.get('abono') : "$ 0";
-        var cancelar = params.has('cancelar') ? params.get('cancelar') : "$ 0";
-        var totalPagar = params.has('totalPagar') ? params.get('totalPagar') : "$ 0";
-        var valorPrestamo = params.has('valorPrestamo') ? params.get('valorPrestamo') : "$ 0";
-        var valorAbono = params.has('valorAbono') ? params.get('valorAbono') : "$ 0";
-        var saldoPendiente = params.has('saldoPendiente') ? params.get('saldoPendiente') : "$ 0";
-        var proximoPago = params.has('proximoPago') ? params.get('proximoPago') : "Fecha no especificada";
+    <script>
+        function compartirEnFacebook() {
+            // Implementar la funcionalidad de compartir en Facebook
+            alert("Compartir en Facebook");
+        }
 
-        // Asignar los valores a los elementos HTML
-        document.getElementById("boleto").textContent = boleto;
-        document.getElementById("FechaPago").textContent = FechaPago;
-        document.getElementById("nombreArrendatario").textContent = nombreArrendatario;
-        document.getElementById("telefono").textContent = telefono;
-        document.getElementById("desde").textContent = desde;
-        document.getElementById("hasta").textContent = hasta;
-        document.getElementById("nit_cedula").textContent = nit_cedula;
-        document.getElementById("mes").textContent = mes;
-        document.getElementById("valor").textContent = valor;
-        document.getElementById("abono").textContent = abono;
-        document.getElementById("cancelar").textContent = cancelar;
-        document.getElementById("totalPagar").textContent = totalPagar;
-        document.getElementById("valorPrestamo").textContent = valorPrestamo;
-        document.getElementById("valorAbono").textContent = valorAbono;
-        document.getElementById("saldoPendiente").textContent = saldoPendiente;
-        document.getElementById("proximoPago").textContent = proximoPago;
+        function compartirEnWhatsApp() {
+            // Implementar la funcionalidad de compartir en WhatsApp
+            alert("Compartir en WhatsApp");
+        }
     </script>
 </body>
 </html>
-
