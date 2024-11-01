@@ -225,7 +225,7 @@
                         <td>meses</td>
                         <td id="Nmes"></td>
                         <td id="ValorUni"></td>
-                        <td id="TValorAlquiler"></td>
+                        <td id="TValor"></td>
                     </tr>
                     <tr>
                         <td>Inscripcion</td>
@@ -298,7 +298,8 @@
         document.getElementById("ValorMensualidad").textContent = params.get('ValorMensualidad') || "Valor no especificado";
         document.getElementById("Nmes").textContent = params.get('Nmes') || "no especificado";
         document.getElementById("ValorUni").textContent = params.get('ValorUni') || "no especificado";
-        document.getElementById("TValorAlquiler").textContent = params.get('TValorAlquiler') || "no especificado";
+        
+        document.getElementById("TValor").textContent = params.get('TValor') || "no especificado";
         document.getElementById("ValorDepo").textContent = params.get('ValorDepo') || "$000.00";
         document.getElementById("TotalPagar").textContent = params.get('TotalPagar') || "$ 000.00";
         document.getElementById("ProximoPago").textContent = params.get('ProximoPago') || "no especificado";
@@ -314,10 +315,10 @@
         var hasta = params.has('Nivel') ? params.get('Nivel') : "Nivel no especificado";
          var mes = params.has('DiasEntreno') ? params.get('DiasEntreno') : " no especificado";
         var nit_cedula = params.has('ValorMensualidad') ? params.get('ValorMensualidad') : "Valor no especificado";
-       
-        var valor = params.has('valor') ? params.get('valor') : "$ 0";
-        var abono = params.has('abono') ? params.get('abono') : "$ 0";
-        var cancelar = params.has('cancelar') ? params.get('cancelar') : "$ 0";
+        var valor = params.has('Nmes') ? params.get('Nmes') : " 0";
+        var abono = params.has('ValorUni') ? params.get('ValorUni') : "$ 0";
+        var cancelar = params.has('TValor') ? params.get('TValor') : "$ 0";
+        
         var totalPagar = params.has('totalPagar') ? params.get('totalPagar') : "$ 0";
         var valorPrestamo = params.has('valorPrestamo') ? params.get('valorPrestamo') : "$ 0";
         var valorAbono = params.has('valorAbono') ? params.get('valorAbono') : "$ 0";
